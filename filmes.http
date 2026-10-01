@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:8080
+
+### Listar os três filmes iniciais
+GET {{baseUrl}}/filmes
+
+### Buscar o primeiro filme (em um banco recém-criado)
+GET {{baseUrl}}/filmes/1
+
+### Cadastrar um filme
+POST {{baseUrl}}/filmes
+Content-Type: application/json
+
+{
+  "titulo": "Matrix",
+  "genero": "Ficção científica",
+  "anoLancamento": 1999
+}
+
+> {% client.global.set("filmeId", response.body.id); %}
+
+### Atualizar o filme cadastrado acima
+PUT {{baseUrl}}/filmes/{{filmeId}}
+Content-Type: application/json
+
+{
+  "titulo": "Matrix Reloaded",
+  "genero": "Ação",
+  "anoLancamento": 2003
+}
+
+### Excluir o filme cadastrado acima
+DELETE {{baseUrl}}/filmes/{{filmeId}}
